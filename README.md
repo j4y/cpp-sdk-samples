@@ -1,26 +1,27 @@
-#Sample Apps for Affdex SDK for Windows and Linux
+# Sample Apps for Affdex SDK for Windows and Linux
 
-Welcome to our repository on GitHub! Here you will find example code to get you started with our Affdex Linux SDK 3.2, Affdex Windows SDK 3.4 and begin emotion-enabling you own app! Documentation for the SDKs is available on the <a href=http://developer.affectiva.com/>Affectiva's Developer Portal</a>.
+Welcome to our repository on GitHub. Here you will find example code to get you started with our Affdex Linux SDK 3.2, Affdex Windows SDK 3.4 and begin emotion-enabling your own app. Documentation for the SDKs is available on the [Affectiva's Developer Portal](http://developer.affectiva.com/downloads).
 
-*Build Status*
-- Windows: [![Build status](https://ci.appveyor.com/api/projects/status/pn2y9h8a3nnkiw41?svg=true)]
-(https://ci.appveyor.com/project/ahamino/win-sdk-samples)
+## Build Status
+
+- Windows: [![Build status](https://ci.appveyor.com/api/projects/status/pn2y9h8a3nnkiw41?svg=true)](https://ci.appveyor.com/project/ahamino/win-sdk-samples)
 - Ubuntu: [![Build Status](https://travis-ci.org/Affectiva/cpp-sdk-samples.svg?branch=master)](https://travis-ci.org/Affectiva/cpp-sdk-samples)
 
-Dependencies
-------------
+## Dependencies
 
-*Windows*
+### Windows
+
 - Affdex SDK 3.4 (64 bit)
 - Visual Studio 2013 or higher
 
-*Linux*
+### Linux
+
 - Ubuntu 14.04 or CentOS 7
 - Affdex SDK 3.2
 - CMake 2.8 or higher
 - GCC 4.8
 
-*Additional dependencies*
+### Additional dependencies
 
 - OpenCV 2.4
 - Boost 1.59
@@ -28,16 +29,16 @@ Dependencies
 - libcurl
 - libopenssl
 
-Installation
-------------
+## Installation
 
 - Download Affdex SDK [from here](http://developer.affectiva.com/downloads)
 
-*Windows*
+### Windows
+
 - Install the SDK using MSI installer.
 - The additional dependencies get installed automatically by NuGet.
 
-*Ubuntu*
+### Ubuntu
 
 ```bashrc
 sudo apt-get install build-essential libopencv-dev libboost1.55-all-dev libcurl-dev uuid-dev cmake
@@ -53,7 +54,7 @@ make
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/affdex-sdk/lib
 ```
 
-*CentOS*
+### CentOS
 
 ```bashrc
 sudo yum install libcurl-devel.x86_64 libuuid-devel.x86_64 opencv-devel cmake.x86_64
@@ -74,8 +75,26 @@ make
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/affdex-sdk/lib
 ```
 
-OpenCV-webcam-demo (c++)
-------------------
+### macOS
+
+These steps depend on the [Homebrew](http://brew.sh/) package manager.
+
+```bashrc
+brew tap homebrew/science
+brew install opencv
+brew install boost@1.59
+wget (unreleased macOS SDK)
+mkdir $HOME/affdex-sdk
+tar -xzvf (unreleased macOS SDK) -C $HOME/affdex-sdk
+export AFFDEX_DATA_DIR=$HOME/affdex-sdk/data
+mkdir $HOME/build
+cd $HOME/build
+cmake -DOpenCV_DIR=/usr/ -DBOOST_ROOT=/usr/local/opt/boost\@1.59/ -DAFFDEX_DIR=$HOME/affdex-sdk $HOME/sdk-samples
+make
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$HOME/affdex-sdk/lib
+```
+
+## OpenCV-webcam-demo (c++)
 
 Project for demoing the [FrameDetector class](http://developer.affectiva.com/v3_2/cpp/analyze-frames/). It grabs frames from the camera, analyzes them and displays the results on screen.
 
@@ -94,8 +113,7 @@ The following command line arguments can be used to run it:
     --numFaces arg (=1)                  Number of faces to be tracked.
     --draw arg (=1)                      Draw metrics on screen.
 
-Video-demo (c++)
-----------
+## Video-demo (c++)
 
 Project for demoing the Windows SDK [VideoDetector class](http://developer.affectiva.com/v3_2/cpp/analyze-video/) and [PhotoDetector class](http://developer.affectiva.com/v3_2/cpp/analyze-photo/). It processs video or image files, displays the emotion metrics and exports the results in a csv file.
 
@@ -111,5 +129,4 @@ The following command line arguments can be used to run it:
     --numFaces arg (=1)                  Number of faces to be tracked.
     --loop arg (=0)                      Loop over the video being processed.
 
-
-For an example of how to use Affdex in a C# application .. please refer to [AffdexMe](https://github.com/affectiva/affdexme-win)
+For an example of how to use Affdex in a C# application, please refer to [AffdexMe](https://github.com/affectiva/affdexme-win)
